@@ -1,0 +1,24 @@
+version: '3'
+
+# sluzby alebo kontajnere s ktorymi chceme robit
+services:
+  # oznacenie service takto sa bude dat na nu pripajat z aplikacie ak databaza aj server bezia spolu v Dockery
+  db:
+    # tento service bude pouzivat tento image
+    image: postgres:latest
+    # nazov kontajnera inak sa bude volat defaultne ako image
+    container_name: Database
+    # restartuj tento kontajner ak sa databaza zastavi
+    restart: unless-stopped
+    # treba volumes lebo kontajnery sa vzdy spustaju akoby na novo a vsetko co mali by sa vymazalo
+    volumes:
+      - ./db/memory:/var/lib/postgresql/data
+    # mapovanie portov docker hub port : docker contajner port na ktorom bude bezat tomcat
+    # presmeruje sa na vonkajsiu komunikaciu na rovnaky port ale vonkajsi
+    ports:
+      - "5432:5432"
+    environment:
+#      je sucastou URL
+      POSTGRES_DB: postgres
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password

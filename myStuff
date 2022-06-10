@@ -1,0 +1,91 @@
+Vytvorenie lumen projectu
+composer create-project --prefer-dist laravel/laravel:^8.0 blog
+composer create-project --prefer-dist laravel/lumen authors
+Premiestnit sa do projectu
+cd authors
+Dat project bezat v browsery
+php -S localhost:8000 -t public
+Vypat ctrl+c
+Spustit server cez artisan / host nepovinne
+php artisan serve --host 0.0.0.0 //-> http://localhost:8000
+Nastavit aj port
+php artisan serve --host 0.0.0.0 --port 80 //-> http://localhost:80 (80 netreba pisat)
+
+IBA LUMEN
+V bootstrap/app.php odkomentovat // app->withEloquent
+Po odkomentovani Lumen hooks the Eloquent ORM with your database using the connections configured in the .env file
+Treba nastavit detaily databazy v .env subore
+Odkomentovat //$app->withFacades(); aby sme mohli pouzivat Facades v projekte
+
+Najprv vytvorit migraciu pre tabulku Authors
+Migracie su version control pre databazu, lahsie modifikovanie a zdielanie schemy
+VYTVORENIE: php artisan make:migration create_authors_table
+Bude sa nachadzat v database/migrations
+Nastavit napojenie na databazu v .env
+Po nastaveni stlpcov v tabulke treba dat migrovat:
+php artisan migrate
+V databaze by mali byt tabulka authors a migrations.
+Ak nejde odkomentuj v php.ini tento riadok extension=php_pdo_mysql (odstran ; na zaciatku).
+Odkomentuj tu cast podla databazy (mySQL = mysql).
+
+Po naplneni tabulkami pozri ci tam ozaj su
+Na pripojenie, potom aj password
+psql -h localhost -p 5432 --username=user -W -d postgres <-(nazov databazy)
+Vypis tabuliek
+\dt
+Na prehliadanie tabuliek sa pouziva uz SQL jazyk.
+POZOR ak mas stlpce v camelCase tak ak ich budes mat niekde v kode samostatne pouzi "".
+Ak ich budes mat v kode v ramci nejakeho Stringu ako query tak pouzi \" \".
+Postgresql bude davat stlpce v '' do lowerCase a databaza nerozpozna stlpce.
+
+Modely App\Models\Author.php
+Vytvorit model pre Author nastavit stlpce ktore sa budu vypisovat.
+Do $fillable dam len tie ktore sa budu vyplnat.
+A aby sa dalo pouzit ID tak ho dam do $hidden.
+
+Routes routes/web.php
+Nastavili sme funkcie pre kazdu routu.
+Route groups allow you to share route attributes.
+Therefore, every route will have a prefix of /api.
+
+Controller
+Vytvorit kontroler AuthorController.php v app/Http/Controllers
+Vytvorili sme metody ktore budu volane podla Routes.
+GET, POST, PUT, DELETE
+
+TESTY
+Napisat URL, Vybrat Metodu, Ak treba pridat Data do Body a Odoslat
+POST http://localhost:8000/api/authors + json (form-data) - Pridat noveho autora
+GET http://localhost:8000/api/authors - Zobrazit vsetky zaznamy
+PUT http://localhost:8000/api/authors/{cislo} + json (x-www-form-urlencoded) - Updatnut vybrany zaznam
+DELETE http://localhost:8000/api/authors/{cislo} - Vymazanie zaznamu
+Pri posielani JSON treba nastavit Content Type = application/json
+
+VALIDACIU NETREBA RIESIT LEBO APLIKACIA BUDE POSIELAT DATA
+
+ZABEZPECENIE API lebo na skolsky server asi nema barskto pristup
+
+Seeders
+Vytvorit seedere pre kazdu tabulku
+php artisan make:seeder UserSeeder
+Pozri v database/seeders
+Potom nahadzat triedy do database/seeders/DatabaseSeeder
+Spustit seedovanie
+php artisan db:seed
+Will drop all tables and re-run all of your migrations. This command is useful for completely re-building your database
+php artisan migrate:fresh --seed
+Pri seederoch treba natvrdo zadat created_at a updated_at;
+
+Events
+Na vykonanie volacoho po Create, Update ... v tabulkach
+Pri update alebo vytvoreni zaznamu upravit stlpce s poctami v inych Tabulkach.
+created - When a new model is saved for the first time
+updated - events will dispatch when an existing model is modified and the save method is called
+saved - events will dispatch when a model is created or updated - even if the model's attributes have not been changed
+Observers
+php artisan make:observer MouseObserver --model=Mouse
+Register observers in the boot method of your application's
+App\Providers\EventServiceProvider service provider
+
+Storing Files
+Lumen nepodporuje moc Storage
