@@ -13,6 +13,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory(10)->create();
+        $this->call([
+            ProjectSeeder::class,
+            SessionSeeder::class,
+            LocalitySeeder::class,
+            OccasionSeeder::class,
+            MouseSeeder::class,
+//            EnvTypeSeeder::class,
+//            MethodSeeder::class,
+//            MethodTypeSeeder::class,
+//            ProtocolSeeder::class,
+//            TrapTypeSeeder::class,
+//            VegetTypeSeeder::class,
+//            SpecieSeeder::class
+        ]);
     }
 }
