@@ -145,7 +145,7 @@ class DataController extends Controller
             }
         }
         // ide
-        return response("FUNGUJE", 200);
+        return response("", 200);
     }
 
     public function getData($unixTime) {
