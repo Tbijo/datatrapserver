@@ -47,4 +47,24 @@ class Occasion extends Model
     public function locality() {
         return $this->belongsTo(Locality::class, 'localityID', 'localityId');
     }
+
+    public function method() {
+        return $this->belongsTo(Method::class, 'methodID', 'methodId');
+    }
+
+    public function methodType() {
+        return $this->belongsTo(MethodType::class, 'methodTypeID', 'methodTypeId');
+    }
+
+    public function trapType() {
+        return $this->belongsTo(TrapType::class, 'trapTypeID', 'trapTypeId');
+    }
+
+    public function envType() {
+        return $this->belongsTo(EnvType::class, 'envTypeID', 'envTypeId');
+    }
+
+    public function vegetType() {
+        return $this->belongsTo(VegetType::class, 'vegetTypeID', 'vegetTypeId');
+    }
 }
