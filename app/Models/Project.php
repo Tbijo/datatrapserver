@@ -8,7 +8,6 @@ class Project extends Model
 {
     protected $fillable = [
         'projectName',
-        'deviceID',
         'numLocal',
         'numMice',
         'projectStart'

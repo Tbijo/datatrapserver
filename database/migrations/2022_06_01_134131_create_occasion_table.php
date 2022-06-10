@@ -16,7 +16,6 @@ class CreateOccasionTable extends Migration
         Schema::create('occasion', function (Blueprint $table) {
             $table->bigIncrements('occasionId');
             $table->integer('occasion');
-            $table->string('deviceID');
             $table->bigInteger('localityID');
             $table->bigInteger('sessionID');
             $table->bigInteger('methodID');

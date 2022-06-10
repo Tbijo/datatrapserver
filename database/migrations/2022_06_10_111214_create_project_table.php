@@ -16,7 +16,6 @@ class CreateProjectTable extends Migration
         Schema::create('project', function (Blueprint $table) {
             $table->bigIncrements('projectId');
             $table->integer('projectName');
-            $table->string('deviceID');
             $table->integer('numLocal');
             $table->integer('numMice');
             $table->bigInteger('projectStart');

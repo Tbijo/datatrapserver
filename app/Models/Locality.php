@@ -9,7 +9,6 @@ class Locality extends Model
 {
     protected $fillable = [
         'localityName',
-        'deviceID',
         'xA',
         'yA',
         'xB',

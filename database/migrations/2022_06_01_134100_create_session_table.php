@@ -16,7 +16,6 @@ class CreateSessionTable extends Migration
         Schema::create('session', function (Blueprint $table) {
             $table->bigIncrements('sessionId');
             $table->integer('session');
-            $table->string('deviceID');
             $table->bigInteger('projectID');
             $table->integer('numOcc');
             $table->bigInteger('sessionStart');

@@ -16,7 +16,6 @@ class CreateLocalityTable extends Migration
         Schema::create('locality', function (Blueprint $table) {
             $table->bigIncrements('localityId');
             $table->string('localityName');
-            $table->string('deviceID');
             $table->float('xA')->nullable();
             $table->float('yA')->nullable();
             $table->float('xB')->nullable();

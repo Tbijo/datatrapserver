@@ -8,7 +8,6 @@ class Occasion extends Model
 {
     protected $fillable = [
             'occasion',
-            'deviceID',
             'localityID',
             'sessionID',
             'methodID',

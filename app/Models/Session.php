@@ -9,7 +9,6 @@ class Session extends Model
 {
     protected $fillable = [
         'session',
-        'deviceID',
         'projectID',
         'numOcc',
         'sessionStart'
