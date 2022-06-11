@@ -19,8 +19,7 @@ class CreateSpecieimageTable extends Migration
             $table->string('path');
             $table->string('note')->nullable();
             $table->bigInteger('specieID');
-            $table->string('deviceID');
-            $table->bigInteger('imageCreated');
+            $table->bigInteger('uniqueCode');
             $table->timestamps();
         });
     }

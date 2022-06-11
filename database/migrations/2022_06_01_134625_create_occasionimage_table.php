@@ -20,7 +20,7 @@ class CreateOccasionimageTable extends Migration
             $table->string('note')->nullable();
             $table->bigInteger('occasionID');
             $table->string('deviceID');
-            $table->bigInteger('imageCreated');
+            $table->bigInteger('uniqueCode');
             $table->timestamps();
         });
     }

@@ -20,7 +20,7 @@ class CreateMouseimageTable extends Migration
             $table->string('note')->nullable();
             $table->bigInteger('mouseID');
             $table->string('deviceID');
-            $table->bigInteger('imageCreated');
+            $table->bigInteger('uniqueCode');
             $table->timestamps();
         });
     }

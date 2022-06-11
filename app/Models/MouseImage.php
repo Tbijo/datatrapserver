@@ -13,7 +13,7 @@ class MouseImage extends Model
         'note',
         'mouseID',
         'deviceID',
-        'imageCreated'
+        'uniqueCode'
     ];
 
     protected $hidden = [

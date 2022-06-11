@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DataController extends Controller
-{// TODO Chyba bude v json_decode lebo si pyta JSON ako String nie ako Object
+{
 
     public function insert(Request $request) {
         // dlzka tyzdna v sec

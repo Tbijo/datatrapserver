@@ -15,18 +15,33 @@ class ImageController extends Controller
         $imageSync = new ImageSync($data);
 
         foreach($imageSync->mouseImages as $key => $value) {
-            $mouseImage = new MouseImage($value);
-            MouseImage::create(json_decode($mouseImage, true));
+            $newMouseImage = new MouseImage($value);
+            $mouseImage = MouseImage::where("uniqueCode", $newMouseImage->uniqueCode)->first();
+            if ($mouseImage != null) {
+                $mouseImage->update(json_decode($mouseImage, true));
+            } else {
+                MouseImage::create(json_decode($newMouseImage, true));
+            }
         }
 
         foreach($imageSync->occasionImages as $key => $value) {
-            $occasionImage = new OccasionImage($value);
-            OccasionImage::create(json_decode($occasionImage, true));
+            $newOccasionImage = new OccasionImage($value);
+            $occasionImage = OccasionImage::where("uniqueCode", $newOccasionImage->uniqueCode)->first();
+            if ($occasionImage != null) {
+                $occasionImage->update(json_decode($newOccasionImage, true));
+            } else {
+                OccasionImage::create(json_decode($newOccasionImage, true));
+            }
         }
 
         foreach($imageSync->specieImages as $key => $value) {
-            $specieImage = new SpecieImage($value);
-            SpecieImage::create(json_decode($specieImage, true));
+            $newSpecieImage = new SpecieImage($value);
+            $specieImage = SpecieImage::where("uniqueCode", $newSpecieImage->uniqueCode)->first();
+            if ($specieImage != null) {
+                $specieImage->update(json_decode($newSpecieImage, true));
+            } else {
+                SpecieImage::create(json_decode($newSpecieImage, true));
+            }
         }
 
         if ($request->hasFile("fileImages")) {
