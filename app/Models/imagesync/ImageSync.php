@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImageSync extends Model
 {
-    protected $fillable = ['mouseImages', 'occasionImages', 'specieImages', 'fileImages'];
+    protected $fillable = ['mouseImages', 'occasionImages', 'specieImages'];
 }

@@ -12,7 +12,8 @@ class SpecieImage extends Model
         'path',
         'note',
         'specieID',
-        'uniqueCode'
+        'uniqueCode',
+        'file'
     ];
 
     protected $hidden = [

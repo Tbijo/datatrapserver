@@ -13,7 +13,8 @@ class OccasionImage extends Model
         'note',
         'occasionID',
         'deviceID',
-        'uniqueCode'
+        'uniqueCode',
+        'file'
     ];
 
     protected $hidden = [
